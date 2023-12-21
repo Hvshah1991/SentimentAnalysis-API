@@ -1,17 +1,17 @@
-const express = require('express');
-const app = express();
-//const quickstart = require('./routes/quickstart');
+require('dotenv').config()
+const express = require("express")
+const cors = require("cors")
+const app = express()
 
-require('dotenv').config();
 const { PORT } = process.env
 
+app.use(cors())
 
-app.post('/', (_req, res) => {
-    res.send('Hello, your request is received')
-})
+app.use(express.json())
 
+const inputRoutes = require("./routes/input")
+app.use("/input", inputRoutes)
 
 app.listen(PORT, () => {
-    console.log(`App is listening on port ${PORT}`)
+    console.log(`Listening on port ${PORT}`)
 })
-
